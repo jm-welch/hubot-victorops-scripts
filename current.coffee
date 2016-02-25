@@ -32,7 +32,7 @@ module.exports = (robot) ->
       .get() (err, res, body) ->
         res = JSON.parse "#{body}"
         if res["schedule"]?
-          users = (sched["onCall"] for sched in res["schedule"] when sched["onCall"] not in userFilter)
+          users = (sched["onCall"] for sched in res["schedule"] when sched["onCall"]? and sched["onCall"] not in userFilter)
           msg.reply "Users on-call for #{team}: #{users.join(', ')}"
         else
           msg.reply "No team '#{team}' found."
@@ -48,7 +48,7 @@ module.exports = (robot) ->
       .get() (err, res, body) ->
         res = JSON.parse "#{body}"
         if res["schedule"]?
-          users = (sched["onCall"] for sched in res["schedule"] when sched["onCall"] not in userFilter)
+          users = (sched["onCall"] for sched in res["schedule"] when sched["onCall"]? and sched["onCall"] not in userFilter)
           mention = ("@#{user}" for user in users).join(' ')
           msg.send "#{mention} #{message}"
         else
