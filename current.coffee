@@ -9,8 +9,8 @@
 #   HUBOT_VICTOROPS_API_KEY = API Key
 #
 # Commands:
-#   hubot current <team>
-#   @!<team> <message>
+#   hubot current <team> - List users currently on-call for <team>
+#   @!<team> <message> - @-mention <message> to all users currently on-call for <team>
 
 apiauth =
   'X-VO-Api-Id': process.env.HUBOT_VICTOROPS_API_ID
