@@ -16,6 +16,7 @@ apiauth =
   'X-VO-Api-Id': process.env.HUBOT_VICTOROPS_API_ID
   'X-VO-Api-Key': process.env.HUBOT_VICTOROPS_API_KEY
 
+# List users here who should be excluded from all user lists
 userFilter = [
   'ghost1'
   'ghost2'
