@@ -9,15 +9,15 @@
 #   HUBOT_VICTOROPS_API_KEY = API Key
 #
 # Commands:
-#   hubot current <team> - List users currently on-call for <team>
-#   @!<team> <message> - @-mention <message> to all users currently on-call for <team>
+#   hubot current <team>
+#   @!<team> <message>
 
 apiauth =
   'X-VO-Api-Id': process.env.HUBOT_VICTOROPS_API_ID
   'X-VO-Api-Key': process.env.HUBOT_VICTOROPS_API_KEY
 
-# List users here who should be excluded from all user lists
 userFilter = [
+  ''
   'ghost1'
   'ghost2'
   'ghost3'
@@ -33,7 +33,10 @@ module.exports = (robot) ->
       .get() (err, res, body) ->
         res = JSON.parse "#{body}"
         if res["schedule"]?
-          users = (sched["onCall"] for sched in res["schedule"] when sched["onCall"]? and sched["onCall"] not in userFilter)
+          users = []
+          for sched in res["schedule"]
+            users.push sched["onCall"] unless sched["overrideOnCall"]? or sched["onCall"] in userFilter
+            users.push sched["overrideOnCall"] if sched["overrideOnCall"]? and sched["overrideOnCall"]? not in userFilter
           msg.reply "Users on-call for #{team}: #{users.join(', ')}"
         else
           msg.reply "No team '#{team}' found."
@@ -49,7 +52,10 @@ module.exports = (robot) ->
       .get() (err, res, body) ->
         res = JSON.parse "#{body}"
         if res["schedule"]?
-          users = (sched["onCall"] for sched in res["schedule"] when sched["onCall"]? and sched["onCall"] not in userFilter)
+          users = []
+          for sched in res["schedule"]
+            users.push sched["onCall"] unless sched["overrideOnCall"]? or sched["onCall"] in userFilter
+            users.push sched["overrideOnCall"] if sched["overrideOnCall"]? and sched["overrideOnCall"]? not in userFilter
           mention = ("@#{user}" for user in users).join(' ')
           msg.send "#{mention} #{message}"
         else
