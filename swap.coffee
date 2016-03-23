@@ -18,14 +18,15 @@ apiauth =
 module.exports = (robot) ->
   robot.respond /swap ([^ ]+) from ([^ ]+) to ([^ ]+)/i, (msg) ->
     team = msg.match[1]
-    data =
+    data = JSON.stringify({
       fromUser: msg.match[2],
       toUser: msg.match[3]
+    })
     @robot.logger.info "Swap request received. Team: #{team}. \n #{data}"
 
     robot
       .http("https://api.victorops.com/api-public/v1/team/#{team}/oncall/user")
       .headers(apiauth)
-      .header('Content-Type', 'text/json')
+      .header('Content-Type', 'application/json')
       .patch(data) (err, res, body) ->
         msg.reply "#{body}"
