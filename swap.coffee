@@ -22,7 +22,7 @@ module.exports = (robot) ->
       fromUser: msg.match[2],
       toUser: msg.match[3]
     })
-    @robot.logger.info "Swap request received. Team: #{team}. \n #{data}"
+    @robot.logger.info "Swap request for #{team} received from #{msg.envelope.user.id}: #{data}"
 
     robot
       .http("https://api.victorops.com/api-public/v1/team/#{team}/oncall/user")
