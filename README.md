@@ -20,11 +20,25 @@ hubot current <team>
 ```
 
 ### swap.coffee
-Swap on-call a'la the **Take On-Call** feature.
+Swap on-call a'la the **Take On-Call** feature. Use either this **or** `swap-auth.coffee`, not both.
 
-**Important:** The **Take On-Call** feature can only be used to take someone else's on-call shift (it cannot be used to "give" on-call). This script allows anyone to move on-call back and forth (both "give" and "take"). Use with trust and caution.
+**Important:** The **Take On-Call** feature can only be used to take someone else's on-call shift (it cannot be used to "give" on-call). This script allows anyone to move on-call back and forth (both "give" and "take"). Use with trust and caution (or with the `hubot-auth` module, via `swap-auth.coffee`, instead).
 
 #### Usage
 ```
 hubot swap <team> from <fromUser> to <toUser>
+```
+
+### swap-auth.coffee
+Same as `swap.coffee`, but uses the (`hubot-auth`)[https://github.com/hubot-scripts/hubot-auth] module to authenticate use.
+
+#### Setup
+1. Make sure (`hubot-auth`)[https://github.com/hubot-scripts/hubot-auth] is installed. Follow the instructions in the readme to install.
+1. Add whatever roles you want to have access to the script to the `authorizedRoles` list in `swap-auth.coffee`. For example, if you want your 'supervisor' role to be able to use swap, do this:
+
+``` coffeescript
+authorizedRoles = [
+  'admin'
+  'supervisor'
+]
 ```
