@@ -6,6 +6,7 @@ Make sure your invocation of hubot exports the following environment variables (
 
     HUBOT_VICTOROPS_API_ID
     HUBOT_VICTOROPS_API_KEY
+    HUBOT_VICTOROPS_REST_API_KEY
 
 ## Scripts
 ### current.coffee
@@ -15,7 +16,7 @@ The `userFilter` is a list of users that should never be returned by either func
 
 #### Usage
 ```
-hubot current <team>
+!current <team>
 @!<team> message
 ```
 
@@ -26,7 +27,7 @@ Swap on-call a'la the **Take On-Call** feature. Use either this **or** `swap-aut
 
 #### Usage
 ```
-hubot swap <team> from <fromUser> to <toUser>
+!swap <team> from <fromUser> to <toUser>
 ```
 
 ### swap-auth.coffee
@@ -41,4 +42,16 @@ authorizedRoles = [
   'admin'
   'supervisor'
 ]
+```
+
+### vopage.coffee
+Manually send an Incident to VictorOps
+
+#### Setup
+The `HUBOT_VICTOROPS_REST_API_KEY` environment variable must be exported for this work
+
+#### Usage
+```
+!critical <team> <message>
+!warning <team> <message>
 ```
