@@ -16,7 +16,7 @@ apiauth =
   'X-VO-Api-Key': process.env.HUBOT_VICTOROPS_API_KEY
 
 module.exports = (robot) ->
-  robot.respond /swap ([^ ]+) from ([^ ]+) to ([^ ]+)/i, (msg) ->
+  robot.respond /^!swap ([^ ]+) from ([^ ]+) to ([^ ]+)/i, (msg) ->
     team = msg.match[1]
     data = JSON.stringify({
       fromUser: msg.match[2],
