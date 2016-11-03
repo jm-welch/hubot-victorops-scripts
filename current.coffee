@@ -9,7 +9,7 @@
 #   HUBOT_VICTOROPS_API_KEY = API Key
 #
 # Commands:
-#   hubot current <team> - List users currently on-call for <team>
+#   !current <team> - List users currently on-call for <team>
 #   @!<team> <message> - @-mention <message> to all users currently on-call for <team>
 
 apiauth =
