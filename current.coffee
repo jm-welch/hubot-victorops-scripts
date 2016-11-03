@@ -15,7 +15,7 @@
 apiauth =
   'X-VO-Api-Id': process.env.HUBOT_VICTOROPS_API_ID
   'X-VO-Api-Key': process.env.HUBOT_VICTOROPS_API_KEY
-
+restapikey = process.env.HUBOT_VICTOROPS_REST_API_KEY
 # List users here who should be excluded from all user lists
 userFilter = [
   ''
@@ -61,7 +61,6 @@ module.exports = (robot) ->
           msg.send "#{mention} #{message}"
         else
           msg.reply "No team '#{team}' found."
-          
   robot.hear /^vopage ?(\S*) (.*)/, (msg) ->
     team = msg.match[1]
     message = msg.match[2]
@@ -94,7 +93,7 @@ module.exports = (robot) ->
                 msg.send "Status Code: #{res.statusCode}"
                 msg.send "Users on-call for #{team}: #{users.join(', ')}"
                 return
-              msg.send res.statusCode
-              msg.send "Users on-call for #{team}: #{users.join(', ')} \nAn alert has been sent."
+              msg.send "An alert has been sent"
+              msg.send "Users on-call for #{team}: #{users.join(', ')}"
         else
           msg.reply "No team '#{team}' found."
