@@ -7,6 +7,10 @@ Make sure your invocation of hubot exports the following environment variables (
     HUBOT_VICTOROPS_API_ID
     HUBOT_VICTOROPS_API_KEY
 
+Additionally, if you want to use the REST API functionality you need to enable the endpoint (found **VictorOps > Integration > Enable REST Endpoint**). You can find the REST Endpoint API key there as well. Export the following enviroment variable:
+
+	HUBOT_VICTOROPS_REST_API_KEY
+
 ## Scripts
 ### current.coffee
 List or @-mention currently on-call members for a team.
@@ -17,6 +21,7 @@ The `userFilter` is a list of users that should never be returned by either func
 ```
 hubot current <team>
 @!<team> message
+vopage <team> alert message
 ```
 
 ### swap.coffee

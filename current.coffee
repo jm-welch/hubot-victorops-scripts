@@ -61,6 +61,7 @@ module.exports = (robot) ->
           msg.send "#{mention} #{message}"
         else
           msg.reply "No team '#{team}' found."
+          
   robot.hear /^vopage ?(\S*) (.*)/, (msg) ->
     team = msg.match[1]
     message = msg.match[2]
