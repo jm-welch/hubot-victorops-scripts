@@ -26,7 +26,7 @@ module.exports = (robot) ->
     })
     
     robot
-      .http("https://alert.victorops.com/integrations/generic/20131114/alert/#{api_key}/#{route}")
+      .http("https://alert.victorops.com/integrations/generic/20131114/alert/#{rest_api_key}/#{route}")
       .post(alert_data) (err, res, body) ->
         if err
           msg.reply "Error occurred sending alert: #{err}"
@@ -36,7 +36,6 @@ module.exports = (robot) ->
           return
         msg.reply "Alert has been sent"
         
-module.exports = (robot) ->
   robot.hear /^!warning ?(.*) (.*)/, (msg) ->
     route = msg.match[1]
     message = msg.match[2]
@@ -49,7 +48,7 @@ module.exports = (robot) ->
     })
     
     robot
-      .http("https://alert.victorops.com/integrations/generic/20131114/alert/#{api_key}/#{route}")
+      .http("https://alert.victorops.com/integrations/generic/20131114/alert/#{rest_api_key}/#{route}")
       .post(alert_data) (err, res, body) ->
         if err
           msg.reply "Error occurred sending alert: #{err}"
