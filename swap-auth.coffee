@@ -9,7 +9,7 @@
 #   HUBOT_VICTOROPS_API_KEY = API Key
 #
 # Commands:
-#   hubot swap <team> from <fromUser> to <toUser> - Replace <fromUser> with <toUser> on <team> until next on-call change
+#   !swap <team> from <fromUser> to <toUser> - Replace <fromUser> with <toUser> on <team> until next on-call change
 
 apiauth =
   'X-VO-Api-Id': process.env.HUBOT_VICTOROPS_API_ID
@@ -21,7 +21,7 @@ authorizedRoles = [
 ]
 
 module.exports = (robot) ->
-  robot.respond /swap ([^ ]+) from ([^ ]+) to ([^ ]+)/i, (msg) ->
+  robot.respond /^!swap ([^ ]+) from ([^ ]+) to ([^ ]+)/i, (msg) ->
     team = msg.match[1]
     data = JSON.stringify({
       fromUser: msg.match[2],
