@@ -10,9 +10,15 @@ HUBOT_VICTOROPS_API_KEY
 HUBOT_VICTOROPS_REST_API_KEY
 ```
 
+Additionally, if you want to use the REST API functionality you need to enable the endpoint (found **VictorOps > Integration > Enable REST Endpoint**). You can find the REST Endpoint API key there as well. Export the following enviroment variable:
+
+	HUBOT_VICTOROPS_REST_API_KEY
+
 ## Scripts
 ### current.coffee
 List or @-mention currently on-call members for a team.
+
+vopage will send an alert message to the oncall user(s) for a team. Note that this will send a CRITICAL alert as it is written and will therefore follow escalation policies. This can be changed by editing the JSON in the HTTP POST in the script.
 
 The `userFilter` is a list of users that should never be returned by either function. Our organization uses "Ghost" users to help construct our schedules, so this was written to keep those users out of the results. Unless similar users exist at your org, no changes should need to be made here.
 
@@ -20,6 +26,7 @@ The `userFilter` is a list of users that should never be returned by either func
 ```
 !current <team>
 @!<team> message
+vopage <team> alert message
 ```
 
 ### incidents.coffee
