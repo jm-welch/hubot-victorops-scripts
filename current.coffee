@@ -9,7 +9,7 @@
 #   HUBOT_VICTOROPS_API_KEY = API Key
 #
 # Commands:
-#   hubot current <team> - List users currently on-call for <team>
+#   !current <team> - List users currently on-call for <team>
 #   @!<team> <message> - @-mention <message> to all users currently on-call for <team>
 
 apiauth =
@@ -25,7 +25,7 @@ userFilter = [
 ]
 
 module.exports = (robot) ->
-  robot.respond /current +(.*)$/i, (msg) ->
+  robot.hear /^!current +(.*)$/i, (msg) ->
     team = msg.match[1]
 
     robot
@@ -58,6 +58,6 @@ module.exports = (robot) ->
             users.push sched["onCall"] unless sched["overrideOnCall"]? or sched["onCall"] in userFilter
             users.push sched["overrideOnCall"] if sched["overrideOnCall"]? and sched["overrideOnCall"]? not in userFilter
           mention = ("@#{user}" for user in users).join(' ')
-          msg.send "#{mention} #{message}"
+          msg.send "#{mention} (from @#{msg.envelope.user.id}): #{message}"
         else
           msg.reply "No team '#{team}' found."
