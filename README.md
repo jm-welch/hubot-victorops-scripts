@@ -4,9 +4,11 @@ Hubot scripts to extend VictorOps
 ## Setup
 Make sure your invocation of hubot exports the following environment variables (found in the VictorOps interface at **Settings > API**):
 
-    HUBOT_VICTOROPS_API_ID
-    HUBOT_VICTOROPS_API_KEY
-    HUBOT_VICTOROPS_REST_API_KEY
+```
+HUBOT_VICTOROPS_API_ID
+HUBOT_VICTOROPS_API_KEY
+HUBOT_VICTOROPS_REST_API_KEY
+```
 
 ## Scripts
 ### current.coffee
@@ -18,6 +20,20 @@ The `userFilter` is a list of users that should never be returned by either func
 ```
 !current <team>
 @!<team> message
+```
+
+### incidents.coffee
+Ackowledge, resolve, or create Incidents in VictorOps
+
+#### Setup
+The `HUBOT_VICTOROPS_REST_API_KEY` environment variable must be exported for this work.
+
+#### Usage
+```
+!ack [<message>] #[i|incident]<incNum>
+!resolve [<message>] #[i|incident]<incNum>
+!critical <team> <message>
+!warning <team> <message>
 ```
 
 ### swap.coffee
@@ -42,16 +58,4 @@ authorizedRoles = [
   'admin'
   'supervisor'
 ]
-```
-
-### vopage.coffee
-Manually send an Incident to VictorOps
-
-#### Setup
-The `HUBOT_VICTOROPS_REST_API_KEY` environment variable must be exported for this work
-
-#### Usage
-```
-!critical <team> <message>
-!warning <team> <message>
 ```
