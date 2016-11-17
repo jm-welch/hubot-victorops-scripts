@@ -43,7 +43,7 @@ module.exports = (robot) ->
           msg.reply "No team '#{team}' found."
 
 
-  robot.hear /^@! ?(.*) (.*)/, (msg) ->
+  robot.hear /^@! ?(\S*) (.*)/, (msg) ->
     team = msg.match[1]
     message = msg.match[2]
 
